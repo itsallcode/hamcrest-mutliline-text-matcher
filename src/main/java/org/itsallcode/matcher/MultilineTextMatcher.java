@@ -37,6 +37,7 @@ import org.hamcrest.TypeSafeMatcher;
  */
 public class MultilineTextMatcher extends TypeSafeMatcher<String>
 {
+	private static final String LINE_SEPARATOR = "\n";
 	private static final String LINE_ENDING = "\\r\\n|\\r|\\n";
 	private final String originalText;
 
@@ -83,13 +84,13 @@ public class MultilineTextMatcher extends TypeSafeMatcher<String>
 				mismatchDescription.appendText(">>> ");
 			}
 			mismatchDescription.appendText(line);
-			mismatchDescription.appendText(System.lineSeparator());
+			mismatchDescription.appendText(LINE_SEPARATOR);
 		}
 	}
 
 	private String describeLineCount(final int lineCount)
 	{
-		return "(" + lineCount + " lines)" + System.lineSeparator();
+		return "(" + lineCount + " lines)" + LINE_SEPARATOR;
 	}
 
 	@Override
@@ -103,7 +104,7 @@ public class MultilineTextMatcher extends TypeSafeMatcher<String>
 		{
 			description.appendText("    ");
 			description.appendText(line);
-			description.appendText(System.lineSeparator());
+			description.appendText(LINE_SEPARATOR);
 		}
 	}
 
@@ -115,7 +116,7 @@ public class MultilineTextMatcher extends TypeSafeMatcher<String>
 	 */
 	public static MultilineTextMatcher matchesAllLines(final String... lines)
 	{
-		return new MultilineTextMatcher(String.join(System.lineSeparator(), lines));
+		return new MultilineTextMatcher(String.join(LINE_SEPARATOR, lines));
 	}
 
 	private List<String> splitPreservingNewLines(final String text)
