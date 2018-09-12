@@ -2,12 +2,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>hamcrest-mutliline-text-matcher</groupId>
+	<groupId>org.itsallcode</groupId>
 	<artifactId>hamcrest-mutliline-text-matcher</artifactId>
 	<version>1.0.0</version>
 	<name>Hamcrest multi-line text matcher</name>
-	<description>This project provides a Hamcrest matcher that gives you better
-	 diagnostics for multi-line text in case of mismatches.</description>
+	<description>This project provides a Hamcrest matcher that gives you better diagnostics for multi-line text in case of mismatches.</description>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
@@ -73,4 +72,16 @@
 			</plugin>
 		</plugins>
 	</build>
+	<url>https://github.com/itsallcode/hamcrest-mutliline-text-matcher</url>
+	<organization>
+		<name>itsallcode.org</name>
+		<url>https://blog.itsallcode.org</url>
+	</organization>
+	<scm>
+		<url>https://github.com/itsallcode/hamcrest-mutliline-text-matcher.git</url>
+	</scm>
+	<issueManagement>
+		<url>https://github.com/itsallcode/hamcrest-mutliline-text-matcher/issues</url>
+		<system>Github issues</system>
+	</issueManagement>
 </project>
