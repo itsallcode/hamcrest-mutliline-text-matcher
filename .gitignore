@@ -1,1 +1,5 @@
 /target/
+**/*.swp
+**/*.bak
+**/*.log
+**/*.out
