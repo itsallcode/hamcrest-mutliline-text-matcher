@@ -109,8 +109,9 @@
                     <doclint></doclint>
                     <serialwarn>true</serialwarn>
                     <failOnError>true</failOnError>
-                    <failOnWarnings>true</failOnWarnings>
-                    <additionalOptions>-html5</additionalOptions>
+                    <failOnWarnings>false</failOnWarnings>
+                    <!-- -html5 is only supported by java > 8 -->
+                    <!-- <additionalOptions>-html5</additionalOptions> -->
                 </configuration>
             </plugin>
             <plugin>
