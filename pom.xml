@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>hamcrest-mutliline-text-matcher</groupId>
 	<artifactId>hamcrest-mutliline-text-matcher</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>Hamcrest multi-line text matcher</name>
 	<description>This project provides a Hamcrest matcher that gives you better
 	 diagnostics for multi-line text in case of mismatches.</description>
