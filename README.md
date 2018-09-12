@@ -2,6 +2,7 @@
 
 This project provides a [Hamcrest](http://hamcrest.org/) matcher that gives you better diagnostics for multi-line text in case of mismatches.
 
+[![Build Status](https://travis-ci.com/itsallcode/hamcrest-mutliline-text-matcher.svg?branch=master)](https://travis-ci.com/itsallcode/hamcrest-mutliline-text-matcher)
 [![Download](https://api.bintray.com/packages/itsallcode/itsallcode/hamcrest-mutliline-text-matcher/images/download.svg) ](https://bintray.com/itsallcode/itsallcode/hamcrest-mutliline-text-matcher/_latestVersion)
 
 ## Usage
