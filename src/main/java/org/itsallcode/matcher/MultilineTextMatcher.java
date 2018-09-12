@@ -111,7 +111,7 @@ public class MultilineTextMatcher extends TypeSafeMatcher<String>
 	/**
 	 * Factory method for multi-line text matcher
 	 * 
-	 * @param line a line of text
+	 * @param lines the expected lines
 	 * @return the matcher
 	 */
 	public static MultilineTextMatcher matchesAllLines(final String... lines)
