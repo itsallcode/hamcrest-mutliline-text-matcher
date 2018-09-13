@@ -37,7 +37,7 @@ import org.hamcrest.TypeSafeMatcher;
  */
 public class MultilineTextMatcher extends TypeSafeMatcher<String>
 {
-	private static final String LINE_SEPARATOR = "\n";
+	private static final String LINE_SEPARATOR = System.lineSeparator();
 	private static final String LINE_ENDING = "\\r\\n|\\r|\\n";
 	private final String originalText;
 

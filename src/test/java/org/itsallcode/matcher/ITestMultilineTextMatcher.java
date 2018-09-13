@@ -33,16 +33,18 @@ import org.junit.Test;
 
 public class ITestMultilineTextMatcher
 {
+	private static final String LINE_SEPARATOR = System.lineSeparator();
+
 	@Test
 	public void testMatchesAllLines()
 	{
-		assertThat("foo\nbar", MultilineTextMatcher.matchesAllLines("foo", "bar"));
+		assertThat("foo" + LINE_SEPARATOR + "bar", MultilineTextMatcher.matchesAllLines("foo", "bar"));
 	}
 
 	@Test
 	public void testDoesNotMatchAllLines()
 	{
-		assertThat("bar\nfoo", not(MultilineTextMatcher.matchesAllLines("foo", "bar")));
+		assertThat("bar" + LINE_SEPARATOR + "foo", not(MultilineTextMatcher.matchesAllLines("foo", "bar")));
 	}
 
 	@Test
