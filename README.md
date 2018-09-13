@@ -24,6 +24,7 @@ This matcher provides the following features:
 
 * Reports mismatches in the number of lines
 * Marks where in the text a mismatch is found
+* Makes invisible characters visible (CR, LF, TAB)
 
 ## Development
 
