@@ -28,7 +28,7 @@ package org.itsallcode.matcher;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 import org.hamcrest.Description;
 import org.hamcrest.StringDescription;
@@ -36,6 +36,7 @@ import org.junit.Test;
 
 public class TestMultilineTextMatcher
 {
+	private static final String LINE_SEPARATOR = System.lineSeparator();
 	private static final String STANDARD_TWO_LINE_TEXT = "Line 1\nLine 2";
 
 	@Test
@@ -53,27 +54,29 @@ public class TestMultilineTextMatcher
 	@Test
 	public void testDescribeMismatchSafelyLine1Different()
 	{
-		Description description = new StringDescription();
-		MultilineTextMatcher matcher = new MultilineTextMatcher(STANDARD_TWO_LINE_TEXT);
+		final Description description = new StringDescription();
+		final MultilineTextMatcher matcher = new MultilineTextMatcher(STANDARD_TWO_LINE_TEXT);
 		matcher.describeMismatchSafely("different", description);
-		assertThat(description.toString(), equalTo("(1 lines)\n>>> different\n"));
+		assertThat(description.toString(), equalTo("(1 lines)" + LINE_SEPARATOR + ">>> different" + LINE_SEPARATOR));
 	}
 
 	@Test
 	public void testDescribeMismatchSafelyDifferentLineCount()
 	{
-		Description description = new StringDescription();
-		MultilineTextMatcher matcher = new MultilineTextMatcher(STANDARD_TWO_LINE_TEXT);
+		final Description description = new StringDescription();
+		final MultilineTextMatcher matcher = new MultilineTextMatcher(STANDARD_TWO_LINE_TEXT);
 		matcher.describeMismatchSafely(STANDARD_TWO_LINE_TEXT + "\nLine 3", description);
-		assertThat(description.toString(), equalTo("(3 lines)\n    Line 1␊\n>>> Line 2␊\n+>> Line 3\n"));
+		assertThat(description.toString(), equalTo("(3 lines)" + LINE_SEPARATOR + "    Line 1␊" + LINE_SEPARATOR
+				+ ">>> Line 2␊" + LINE_SEPARATOR + "+>> Line 3" + LINE_SEPARATOR));
 	}
 
 	@Test
 	public void testDescribeTo()
 	{
-		Description description = new StringDescription();
-		MultilineTextMatcher matcher = new MultilineTextMatcher(STANDARD_TWO_LINE_TEXT);
+		final Description description = new StringDescription();
+		final MultilineTextMatcher matcher = new MultilineTextMatcher(STANDARD_TWO_LINE_TEXT);
 		matcher.describeTo(description);
-		assertThat(description.toString(), equalTo("(2 lines)\n    Line 1␊\n    Line 2\n"));
+		assertThat(description.toString(),
+				equalTo("(2 lines)" + LINE_SEPARATOR + "    Line 1␊" + LINE_SEPARATOR + "    Line 2" + LINE_SEPARATOR));
 	}
 }
