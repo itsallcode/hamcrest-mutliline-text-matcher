@@ -1,5 +1,6 @@
+/.settings/org.eclipse.jdt.apt.core.prefs
+/.settings/org.eclipse.m2e.core.prefs
 /target/
-**/*.swp
-**/*.bak
-**/*.log
-**/*.out
+/bin/
+/.project
+/.classpath
