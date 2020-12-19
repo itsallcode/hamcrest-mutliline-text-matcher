@@ -1,6 +1,5 @@
 package org.itsallcode.matcher;
 
-
 /*-
  * #%L
  * Hamcrest multi-line text matcher

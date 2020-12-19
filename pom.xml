@@ -110,9 +110,7 @@
                     <serialwarn>true</serialwarn>
                     <failOnError>true</failOnError>
                     <failOnWarnings>false</failOnWarnings>
-                    <source>8</source>
-                    <!-- -html5 is only supported by java > 8 -->
-                    <!-- <additionalOptions>-html5</additionalOptions> -->
+                    <source>${java.version}</source>
                 </configuration>
             </plugin>
             <plugin>
