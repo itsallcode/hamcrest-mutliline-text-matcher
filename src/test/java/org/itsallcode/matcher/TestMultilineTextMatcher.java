@@ -1,5 +1,6 @@
 package org.itsallcode.matcher;
 
+
 /*-
  * #%L
  * Hamcrest multi-line text matcher
@@ -26,14 +27,11 @@ package org.itsallcode.matcher;
  * #L%
  */
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-
 import org.hamcrest.Description;
 import org.hamcrest.StringDescription;
-
 import org.junit.jupiter.api.Test;
-
-import static org.hamcrest.MatcherAssert.assertThat;
 
 public class TestMultilineTextMatcher
 {
