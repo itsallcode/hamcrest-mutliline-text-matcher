@@ -37,97 +37,97 @@ import org.hamcrest.TypeSafeMatcher;
  */
 public class MultilineTextMatcher extends TypeSafeMatcher<String>
 {
-	private static final String LINE_SEPARATOR = System.lineSeparator();
-	private static final String LINE_ENDING = "\\r\\n|\\r|\\n";
-	private final String originalText;
+    private static final String LINE_SEPARATOR = System.lineSeparator();
+    private static final String LINE_ENDING = "\\r\\n|\\r|\\n";
+    private final String originalText;
 
-	public MultilineTextMatcher(final String originalText)
-	{
-		this.originalText = originalText;
-	}
+    public MultilineTextMatcher(final String originalText)
+    {
+        this.originalText = originalText;
+    }
 
-	/**
-	 * Match the text against the original text.
-	 * 
-	 * A full match (including line separators) is required.
-	 * 
-	 * @param text the text to be matched against the original text.
-	 */
-	@Override
-	public boolean matchesSafely(final String text)
-	{
-		return text.equals(this.originalText);
-	}
+    /**
+     * Match the text against the original text.
+     * 
+     * A full match (including line separators) is required.
+     * 
+     * @param text the text to be matched against the original text.
+     */
+    @Override
+    public boolean matchesSafely(final String text)
+    {
+        return text.equals(this.originalText);
+    }
 
-	@Override
-	protected void describeMismatchSafely(final String text, final Description mismatchDescription)
-	{
-		final List<String> originalLines = splitPreservingNewLines(this.originalText);
-		final List<String> lines = splitPreservingNewLines(text);
+    @Override
+    protected void describeMismatchSafely(final String text, final Description mismatchDescription)
+    {
+        final List<String> originalLines = splitPreservingNewLines(this.originalText);
+        final List<String> lines = splitPreservingNewLines(text);
 
-		final int originalLineCount = originalLines.size();
-		final int lineCount = lines.size();
+        final int originalLineCount = originalLines.size();
+        final int lineCount = lines.size();
 
-		mismatchDescription.appendText(describeLineCount(lineCount));
+        mismatchDescription.appendText(describeLineCount(lineCount));
 
-		for (int i = 0; i < lineCount; ++i)
-		{
-			final String line = lines.get(i);
-			if (i > originalLineCount - 1)
-			{
-				mismatchDescription.appendText("+>> ");
-			} else if (line.equals(originalLines.get(i)))
-			{
-				mismatchDescription.appendText("    ");
-			} else
-			{
-				mismatchDescription.appendText(">>> ");
-			}
-			mismatchDescription.appendText(line);
-			mismatchDescription.appendText(LINE_SEPARATOR);
-		}
-	}
+        for (int i = 0; i < lineCount; ++i)
+        {
+            final String line = lines.get(i);
+            if (i > originalLineCount - 1)
+            {
+                mismatchDescription.appendText("+>> ");
+            } else if (line.equals(originalLines.get(i)))
+            {
+                mismatchDescription.appendText("    ");
+            } else
+            {
+                mismatchDescription.appendText(">>> ");
+            }
+            mismatchDescription.appendText(line);
+            mismatchDescription.appendText(LINE_SEPARATOR);
+        }
+    }
 
-	private String describeLineCount(final int lineCount)
-	{
-		return "(" + lineCount + " lines)" + LINE_SEPARATOR;
-	}
+    private String describeLineCount(final int lineCount)
+    {
+        return "(" + lineCount + " lines)" + LINE_SEPARATOR;
+    }
 
-	@Override
-	public void describeTo(final Description description)
-	{
-		final List<String> originalLines = splitPreservingNewLines(this.originalText);
-		final int originalLineCount = originalLines.size();
+    @Override
+    public void describeTo(final Description description)
+    {
+        final List<String> originalLines = splitPreservingNewLines(this.originalText);
+        final int originalLineCount = originalLines.size();
 
-		description.appendText(describeLineCount(originalLineCount));
-		for (final String line : originalLines)
-		{
-			description.appendText("    ");
-			description.appendText(line);
-			description.appendText(LINE_SEPARATOR);
-		}
-	}
+        description.appendText(describeLineCount(originalLineCount));
+        for (final String line : originalLines)
+        {
+            description.appendText("    ");
+            description.appendText(line);
+            description.appendText(LINE_SEPARATOR);
+        }
+    }
 
-	/**
-	 * Factory method for multi-line text matcher
-	 * 
-	 * @param lines the expected lines
-	 * @return the matcher
-	 */
-	public static MultilineTextMatcher matchesAllLines(final String... lines)
-	{
-		return new MultilineTextMatcher(String.join(LINE_SEPARATOR, lines));
-	}
+    /**
+     * Factory method for multi-line text matcher
+     * 
+     * @param lines the expected lines
+     * @return the matcher
+     */
+    public static MultilineTextMatcher matchesAllLines(final String... lines)
+    {
+        return new MultilineTextMatcher(String.join(LINE_SEPARATOR, lines));
+    }
 
-	private List<String> splitPreservingNewLines(final String text)
-	{
-		final String lineSplittingRegEx = "(?<=" + LINE_ENDING + ")";
-		final List<String> lines = new ArrayList<>();
-		for (String line : text.split(lineSplittingRegEx))
-		{
-			line = line.replace('\n', '\u240A').replace('\r', '\u240D').replace('\t', '\u2409');
-			lines.add(line);
-		}
-		return lines;
-	}
+    private List<String> splitPreservingNewLines(final String text)
+    {
+        final String lineSplittingRegEx = "(?<=" + LINE_ENDING + ")";
+        final List<String> lines = new ArrayList<>();
+        for (String line : text.split(lineSplittingRegEx))
+        {
+            line = line.replace('\n', '\u240A').replace('\r', '\u240D').replace('\t', '\u2409');
+            lines.add(line);
+        }
+        return lines;
+    }
 }
