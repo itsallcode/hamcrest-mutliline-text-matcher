@@ -1,12 +1,14 @@
-# hamcrest-multiline-text-matcher 1.0.1, released 2020-12-19
+# hamcrest-multiline-text-matcher 2.0.0, released 2020-12-20
 
 Codename: Update Frenzy
 
 ## Summary 
 
-In version 1.0.1 we ported all tests from JUnit 4 to JUnit 5. We also updated all other dependencies.
+In version 2.0.0 we ported all tests from JUnit 4 to JUnit 5. We also updated all other dependencies.
 
 Updated formatter settings.
+
+Breaking change: requires Java 11 instead of Java 8.
 
 ## Bug Fixes
  
@@ -15,10 +17,12 @@ Updated formatter settings.
 ## Dependency updates
  
 * Removed `org.junit:junit`
+* Added `org.junit.jupiter:junit-jupiter-engine:5.6.2`
+
+## Plug-in updates
+
 * Added `org.apache.maven.plugins:maven-enforcer-plugin:3.0.0-M3`
 * Added `org.codehaus.mojo:versions-maven-plugin:2.7`
-* Added `org.junit.jupiter:junit-jupiter-engine:5.6.2`
-* Added `org.junit.jupiter:junit-jupiter-params:5.6.2`
 * Added `org.sonatype.ossindex.maven:ossindex-maven-plugin:3.1.0`
 * Updated `maven-compiler-plugin:3.7.0` to `3.8.1`
 * Updated `maven-jar-plugin.3.1.0` to `3.2.0`
