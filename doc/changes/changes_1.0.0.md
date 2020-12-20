@@ -1,4 +1,4 @@
-# hamcrest-multiline-text-matcher 1.0.0, released 2020-12-20
+# hamcrest-multiline-text-matcher 1.0.0, released 2018-09-14
 
 Codename: Early bird
 
