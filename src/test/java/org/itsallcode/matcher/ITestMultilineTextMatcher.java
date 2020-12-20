@@ -1,8 +1,5 @@
 package org.itsallcode.matcher;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.not;
-
 /*-
  * #%L
  * Hamcrest multi-line text matcher
@@ -29,7 +26,9 @@ import static org.hamcrest.Matchers.not;
  * #L%
  */
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.not;
 
 public class ITestMultilineTextMatcher
 {

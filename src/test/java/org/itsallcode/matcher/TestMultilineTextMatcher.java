@@ -1,13 +1,5 @@
 package org.itsallcode.matcher;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
-
-import org.hamcrest.Description;
-import org.hamcrest.StringDescription;
-import org.junit.Test;
-
 /*-
  * #%L
  * Hamcrest multi-line text matcher
@@ -34,6 +26,12 @@ import org.junit.Test;
  * #L%
  */
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+import org.hamcrest.Description;
+import org.hamcrest.StringDescription;
+import org.junit.jupiter.api.Test;
+
 public class TestMultilineTextMatcher
 {
     private static final String LINE_SEPARATOR = System.lineSeparator();
@@ -42,13 +40,13 @@ public class TestMultilineTextMatcher
     @Test
     public void testMatchesSafely()
     {
-        assertThat(new MultilineTextMatcher(STANDARD_TWO_LINE_TEXT).matchesSafely(STANDARD_TWO_LINE_TEXT), is(true));
+        assertThat(new MultilineTextMatcher(STANDARD_TWO_LINE_TEXT).matchesSafely(STANDARD_TWO_LINE_TEXT), equalTo(true));
     }
 
     @Test
     public void testDoesNotMatchSafely()
     {
-        assertThat(new MultilineTextMatcher(STANDARD_TWO_LINE_TEXT).matchesSafely("blah"), is(false));
+        assertThat(new MultilineTextMatcher(STANDARD_TWO_LINE_TEXT).matchesSafely("blah"), equalTo(false));
     }
 
     @Test
