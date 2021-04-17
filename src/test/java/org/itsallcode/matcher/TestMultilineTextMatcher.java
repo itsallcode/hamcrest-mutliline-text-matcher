@@ -32,25 +32,25 @@ import org.hamcrest.Description;
 import org.hamcrest.StringDescription;
 import org.junit.jupiter.api.Test;
 
-public class TestMultilineTextMatcher
+class TestMultilineTextMatcher
 {
     private static final String LINE_SEPARATOR = System.lineSeparator();
     private static final String STANDARD_TWO_LINE_TEXT = "Line 1\nLine 2";
 
     @Test
-    public void testMatchesSafely()
+    void testMatchesSafely()
     {
         assertThat(new MultilineTextMatcher(STANDARD_TWO_LINE_TEXT).matchesSafely(STANDARD_TWO_LINE_TEXT), equalTo(true));
     }
 
     @Test
-    public void testDoesNotMatchSafely()
+    void testDoesNotMatchSafely()
     {
         assertThat(new MultilineTextMatcher(STANDARD_TWO_LINE_TEXT).matchesSafely("blah"), equalTo(false));
     }
 
     @Test
-    public void testDescribeMismatchSafelyLine1Different()
+    void testDescribeMismatchSafelyLine1Different()
     {
         final Description description = new StringDescription();
         final MultilineTextMatcher matcher = new MultilineTextMatcher(STANDARD_TWO_LINE_TEXT);
@@ -59,7 +59,7 @@ public class TestMultilineTextMatcher
     }
 
     @Test
-    public void testDescribeMismatchSafelyDifferentLineCount()
+    void testDescribeMismatchSafelyDifferentLineCount()
     {
         final Description description = new StringDescription();
         final MultilineTextMatcher matcher = new MultilineTextMatcher(STANDARD_TWO_LINE_TEXT);
@@ -69,7 +69,7 @@ public class TestMultilineTextMatcher
     }
 
     @Test
-    public void testDescribeTo()
+    void testDescribeTo()
     {
         final Description description = new StringDescription();
         final MultilineTextMatcher matcher = new MultilineTextMatcher(STANDARD_TWO_LINE_TEXT);

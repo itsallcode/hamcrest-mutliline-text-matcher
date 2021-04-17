@@ -30,24 +30,24 @@ import org.junit.jupiter.api.Test;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.not;
 
-public class ITestMultilineTextMatcher
+class ITestMultilineTextMatcher
 {
     private static final String LINE_SEPARATOR = System.lineSeparator();
 
     @Test
-    public void testMatchesAllLines()
+    void testMatchesAllLines()
     {
         assertThat("foo" + LINE_SEPARATOR + "bar", MultilineTextMatcher.matchesAllLines("foo", "bar"));
     }
 
     @Test
-    public void testDoesNotMatchAllLines()
+    void testDoesNotMatchAllLines()
     {
         assertThat("bar" + LINE_SEPARATOR + "foo", not(MultilineTextMatcher.matchesAllLines("foo", "bar")));
     }
 
     @Test
-    public void testDoesNotMatchDifferentLineCount()
+    void testDoesNotMatchDifferentLineCount()
     {
         assertThat("foo", not(MultilineTextMatcher.matchesAllLines("foo", "bar")));
     }
