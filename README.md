@@ -2,8 +2,10 @@
 
 This project provides a [Hamcrest](http://hamcrest.org/) matcher that gives you better diagnostics for multi-line text in case of mismatches.
 
-[![Build Status](https://travis-ci.com/itsallcode/hamcrest-mutliline-text-matcher.svg?branch=master)](https://travis-ci.com/itsallcode/hamcrest-mutliline-text-matcher)
-[![Download](https://api.bintray.com/packages/itsallcode/itsallcode/hamcrest-mutliline-text-matcher/images/download.svg) ](https://bintray.com/itsallcode/itsallcode/hamcrest-mutliline-text-matcher/_latestVersion)
+[![Build](https://github.com/itsallcode/hamcrest-mutliline-text-matcher/actions/workflows/build.yml/badge.svg)](https://github.com/itsallcode/hamcrest-mutliline-text-matcher/actions/workflows/build.yml)
+[![Maven Central](https://img.shields.io/maven-central/v/org.itsallcode/hamcrest-mutliline-text-matcher.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:org.itsallcode%20a:hamcrest-mutliline-text-matcher)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=org.itsallcode%3Ahamcrest-mutliline-text-matcher&metric=alert_status)](https://sonarcloud.io/dashboard?id=org.itsallcode%3Ahamcrest-mutliline-text-matcher)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=org.itsallcode%3Ahamcrest-mutliline-text-matcher&metric=coverage)](https://sonarcloud.io/dashboard?id=org.itsallcode%3Ahamcrest-mutliline-text-matcher)
 
 ## In a Nutshell
 
