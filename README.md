@@ -122,7 +122,7 @@ mvn versions:display-plugin-updates
     ```
 
 1. Checkout the `master` branch.
-1. Update version in `pom.xml` and `README.md`, commit and push.
+1. Update version in `pom.xml`, commit and push.
 1. Run command
 
     ```bash
