@@ -131,7 +131,11 @@
                     <doclint></doclint>
                     <serialwarn>true</serialwarn>
                     <failOnError>true</failOnError>
-                    <failOnWarnings>false</failOnWarnings>
+                    <failOnWarnings>true</failOnWarnings>
+                    <verbose>false</verbose>
+                    <additionalJOptions>
+                        <additionalJOption>-html5</additionalJOption>
+                    </additionalJOptions>
                     <source>${java.version}</source>
                 </configuration>
             </plugin>

@@ -41,6 +41,11 @@ public class MultilineTextMatcher extends TypeSafeMatcher<String>
     private static final String LINE_ENDING = "\\r\\n|\\r|\\n";
     private final String originalText;
 
+    /**
+     * Create a new instance.
+     * 
+     * @param originalText the original text
+     */
     public MultilineTextMatcher(final String originalText)
     {
         this.originalText = originalText;
