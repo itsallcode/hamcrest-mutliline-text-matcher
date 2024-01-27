@@ -45,3 +45,10 @@ jobs:
       with:
         report_paths: '**/target/surefire-reports/TEST-*.xml'
         github_token: ${{ secrets.GITHUB_TOKEN }}
+
+
+  build:
+    needs: matrix-build
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Build successful"
