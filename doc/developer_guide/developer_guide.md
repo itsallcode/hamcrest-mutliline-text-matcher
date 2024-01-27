@@ -1,29 +1,65 @@
 # Developer Guide
 
-## Publishing to JCenter
+## Generate / update license file header
+
+```bash
+mvn license:update-file-header
+```
+
+## Run local sonar analysis
+
+```bash
+mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar \
+    -Dsonar.token=[token]
+```
+
+See analysis results at https://sonarcloud.io/dashboard?id=org.itsallcode%3Ahamcrest-mutliline-text-matcher
+
+## Check for updated dependencies / plugins
+
+```bash
+mvn versions:display-dependency-updates
+```
+
+```bash
+mvn versions:display-plugin-updates
+```
+
+## Publishing to Maven Central
 
 1. Add the following to your `~/.m2/settings.xml`:
 
     ```xml
-    <servers>
-        <server>
-            <id>bintray-maven-repo</id>
-            <username>[bintray-username]</username>
-            <password>[bintray-api-key]</password>
-        </server>
-    </servers>
+    <settings>
+        <servers>
+            <server>
+                <id>ossrh</id>
+                <username>your-jira-id</username>
+                <password>your-jira-pwd</password>
+            </server>
+        </servers>
+        <profiles>
+            <profile>
+                <id>ossrh</id>
+                <activation>
+                    <activeByDefault>true</activeByDefault>
+                </activation>
+                <properties>
+                    <gpg.executable>gpg</gpg.executable>
+                    <gpg.passphrase>the_pass_phrase</gpg.passphrase>
+                </properties>
+            </profile>
+        </profiles>
+    </settings>
     ```
 
-1. Checkout the `master` branch.
+1. Checkout the `main` branch.
 1. Update version in `pom.xml`, commit and push.
 1. Run command
 
     ```bash
-    mvn deploy
+    mvn -DskipSigningArtifacts=false clean deploy
     ```
 
-1. Create a [release](https://github.com/itsallcode/hamcrest-mutliline-text-matcher/releases) on GitHub.
-1. Sign in at [bintray.com](https://bintray.com/login?forwardedFrom=%2Fitsallcode%2Fitsallcode%2Fhamcrest-mutliline-text-matcher)
-1. Go to the [bintray project page](https://bintray.com/itsallcode/itsallcode/hamcrest-mutliline-text-matcher)
-1. There should be a notice saying "You have 16 unpublished item(s) for this package". Click the "Publish" link. Binaries will be available for download at [jcenter](https://jcenter.bintray.com/org/itsallcode/hamcrest-mutliline-text-matcher/)
-1. Publish to Maven Central by clicking the "Sync" button at [the project page](https://bintray.com/itsallcode/itsallcode/hamcrest-mutliline-text-matcher#central). After some time the new version will appear at [Maven Central](https://repo1.maven.org/maven2/org/itsallcode/hamcrest-mutliline-text-matcher/).
+1. Create a [release](https://github.com/itsallcode/hamcrest-mutliline-text-matcher/releases) of the `main` branch on GitHub.
+1. After some time the release will be available at [Maven Central](https://repo1.maven.org/maven2/org/itsallcode/hamcrest-mutliline-text-matcher/).
