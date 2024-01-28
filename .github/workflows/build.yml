@@ -2,43 +2,53 @@ name: Build
 
 on:
   push:
-    branches: [ master, develop ]
+    branches: [ main ]
   pull_request:
-    branches: [ master, develop ]
+    branches: [ main ]
 
 jobs:
-  build:
-
+  matrix-build:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        java: [11, 17, 21]
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}-java-${{ matrix.java }}
+      cancel-in-progress: true
+    env:
+      DEFAULT_JAVA: 11
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Fetch all history for all tags and branches
-      run: git fetch --prune --unshallow
-    - uses: actions/setup-java@v1
+    - uses: actions/checkout@v4
       with:
-        java-version: 11
-    - name: Cache local Maven repository
-      uses: actions/cache@v2
+        fetch-depth: 0
+    - uses: actions/setup-java@v4
       with:
-        path: ~/.m2/repository
-        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-        restore-keys: |
-          ${{ runner.os }}-maven-
-    - name: Build with Maven
-      run: mvn --errors --batch-mode clean org.jacoco:jacoco-maven-plugin:prepare-agent install
-      env:
-        MAVEN_OPTS: "-Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn"
+        cache: maven
+        distribution: temurin
+        java-version: |
+          11
+          17
+          21
+    - name: Build with Java ${{ matrix.java }}
+      run: mvn --errors --batch-mode clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Djava.version=${{ matrix.java }}
     - name: Sonar
-      if: ${{ env.SONAR_TOKEN != null }}
-      run: mvn --errors --batch-mode "-Dsonar.host.url=https://sonarcloud.io" -Dsonar.organization=itsallcode -Dsonar.login=$SONAR_TOKEN sonar:sonar
+      if: ${{ env.DEFAULT_JAVA == matrix.java && env.SONAR_TOKEN != null }}
+      run: mvn --errors --batch-mode -Dsonar.token=$SONAR_TOKEN sonar:sonar
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        MAVEN_OPTS: "-Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn"
     - name: Publish Test Report
       uses: scacap/action-surefire-report@v1
       if: always()
       with:
         report_paths: '**/target/surefire-reports/TEST-*.xml'
         github_token: ${{ secrets.GITHUB_TOKEN }}
+
+
+  build:
+    needs: matrix-build
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Build successful"
