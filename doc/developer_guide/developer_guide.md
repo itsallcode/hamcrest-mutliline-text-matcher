@@ -25,41 +25,12 @@ mvn versions:display-dependency-updates
 mvn versions:display-plugin-updates
 ```
 
-## Publishing to Maven Central
+## Creating a Release on Maven Central and GitHub
 
-1. Add the following to your `~/.m2/settings.xml`:
-
-    ```xml
-    <settings>
-        <servers>
-            <server>
-                <id>ossrh</id>
-                <username>your-jira-id</username>
-                <password>your-jira-pwd</password>
-            </server>
-        </servers>
-        <profiles>
-            <profile>
-                <id>ossrh</id>
-                <activation>
-                    <activeByDefault>true</activeByDefault>
-                </activation>
-                <properties>
-                    <gpg.executable>gpg</gpg.executable>
-                    <gpg.passphrase>the_pass_phrase</gpg.passphrase>
-                </properties>
-            </profile>
-        </profiles>
-    </settings>
-    ```
-
-1. Checkout the `main` branch.
-1. Update version in `pom.xml`, commit and push.
-1. Run command
-
-    ```bash
-    mvn -DskipSigningArtifacts=false clean deploy
-    ```
-
+1. Start the release workflow
+  * Run command `gh workflow run release.yml --repo itsallcode/hamcrest-mutliline-text-matcher --ref main`
+  * or go to [GitHub Actions](https://github.com/itsallcode/hamcrest-mutliline-text-matcher/actions/workflows/release.yml) and start the `release.yml` workflow on branch `main`.
+2. Update title and description of the newly created [GitHub release](https://github.com/itsallcode/hamcrest-mutliline-text-matcher/releases).
+3. After some time the release will be available at [Maven Central](https://repo1.maven.org/maven2/org/itsallcode/hamcrest-mutliline-text-matcher/).
 1. Create a [release](https://github.com/itsallcode/hamcrest-mutliline-text-matcher/releases) of the `main` branch on GitHub.
 1. After some time the release will be available at [Maven Central](https://repo1.maven.org/maven2/org/itsallcode/hamcrest-mutliline-text-matcher/).
