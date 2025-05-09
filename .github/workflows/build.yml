@@ -33,6 +33,7 @@ jobs:
           11
           17
           21
+          24
     - name: Build with Java ${{ matrix.java }}
       run: mvn --errors --batch-mode clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Djava.version=${{ matrix.java }}
     - name: Sonar
