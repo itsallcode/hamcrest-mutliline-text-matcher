@@ -29,7 +29,10 @@ jobs:
       with:
         cache: maven
         distribution: temurin
-        java-version: ${{ matrix.java }}
+        # Sonar plugin needs at least Java 17 at build time
+        java-version: |
+          ${{ matrix.java }}
+          17
     - name: Build with Java ${{ matrix.java }}
       run: mvn --errors --batch-mode clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Djava.version=${{ matrix.java }}
     - name: Sonar
